@@ -1,0 +1,27 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#define IOS_6 ([[[UIDevice currentDevice] systemVersion] floatValue] <= 6.1)
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef ENABLE_DEBUG
+#define DebugLog(format, args...) \
+NSLog(@"%s, line %d: " format "\n", \
+__func__, __LINE__, ## args);
+#else
+#define DebugLog(format, args...) do {} while(0)
+#endif
+
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
